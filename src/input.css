@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    @apply antialiased;
+  }
+  body {
+    @apply text-gray-800 bg-cream;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/70 backdrop-blur-md border border-white/50 shadow-xl;
+  }
+  .btn-primary {
+    @apply bg-wine text-white px-8 py-3 rounded-none transition-all duration-300 hover:bg-deep-wine tracking-widest uppercase text-xs font-bold border border-wine;
+  }
+  .btn-outline {
+    @apply bg-transparent text-white border border-white px-8 py-3 rounded-none transition-all duration-300 hover:bg-white hover:text-wine tracking-widest uppercase text-xs font-bold;
+  }
+  .section-title {
+    @apply text-4xl md:text-5xl font-serif text-wine mb-4 relative inline-block;
+  }
+  .section-subtitle {
+    @apply text-gold uppercase tracking-widest text-sm font-sans mb-12 block;
+  }
+}
+
+@layer utilities {
+  .text-shadow-sm {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  }
+  .text-shadow-lg {
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-gray-100;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-wine/50 hover:bg-wine rounded-full;
+}

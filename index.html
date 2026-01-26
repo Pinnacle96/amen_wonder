@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amen Wonder & John - #BESTFOREVER2026</title>
+    <link href="./dist/output.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: none;
+        }
+        
+        #lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            backdrop-filter: blur(10px);
+            background-color: rgba(0,0,0,0.95);
+            justify-content: center;
+            align-items: center;
+        }
+        #lightbox img {
+            max-width: 95%;
+            max-height: 95%;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 bg-cream selection:bg-wine selection:text-white">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-6 bg-gradient-to-b from-black/60 to-transparent backdrop-blur-sm">
+        <div class="container mx-auto px-6 md:px-12 flex justify-between items-center relative z-50">
+            <a href="#" class="text-3xl md:text-4xl font-serif font-bold tracking-widest text-white mix-blend-difference z-50 hover:text-gold transition-colors duration-300 transform hover:scale-105">A & J</a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-12 uppercase text-xs tracking-[0.2em] font-medium text-white mix-blend-difference">
+                <a href="#welcome" class="hover:text-gold transition-all duration-300 relative group py-2">
+                    Welcome
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gold transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#story" class="hover:text-gold transition-all duration-300 relative group py-2">
+                    Story
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gold transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#events" class="hover:text-gold transition-all duration-300 relative group py-2">
+                    Events
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gold transition-all duration-300 group-hover:w-full"></span>
+                </a>
+                <a href="#gallery" class="hover:text-gold transition-all duration-300 relative group py-2">
+                    Gallery
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gold transition-all duration-300 group-hover:w-full"></span>
+                </a>
+            </div>
+
+            <a href="#rsvp" class="hidden md:block bg-white text-wine px-8 py-3 text-xs font-bold tracking-widest uppercase hover:bg-gold hover:text-white transition-all duration-300 rounded-full shadow-lg hover:shadow-gold/30 transform hover:-translate-y-1">
+                RSVP
+            </a>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden focus:outline-none z-50 text-white p-2">
+                <i data-lucide="menu" class="w-8 h-8"></i>
+            </button>
+        </div>
+
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 h-screen w-screen bg-wine z-[60] flex flex-col items-center justify-start pt-32 pb-10 overflow-y-auto space-y-8 opacity-0 pointer-events-none transition-all duration-500 transform translate-y-10">
+        <a href="#welcome" class="mobile-link text-3xl font-serif text-white hover:text-gold transition-all duration-300 transform hover:scale-105 shrink-0">Welcome</a>
+        <a href="#story" class="mobile-link text-3xl font-serif text-white hover:text-gold transition-all duration-300 transform hover:scale-105 shrink-0">Our Story</a>
+        <a href="#events" class="mobile-link text-3xl font-serif text-white hover:text-gold transition-all duration-300 transform hover:scale-105 shrink-0">Events</a>
+        <a href="#gallery" class="mobile-link text-3xl font-serif text-white hover:text-gold transition-all duration-300 transform hover:scale-105 shrink-0">Gallery</a>
+        <a href="#rsvp" class="mobile-link text-3xl font-serif text-white hover:text-gold transition-all duration-300 transform hover:scale-105 shrink-0">RSVP</a>
+        
+        <!-- Mobile Close Button -->
+        <button id="mobile-close-btn" class="absolute top-8 right-6 text-white hover:text-gold transition-colors p-2 z-50">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="relative h-screen w-full overflow-hidden">
+        <!-- Background Image with Parallax Scale -->
+        <div class="absolute inset-0 bg-hero-pattern bg-cover bg-center transform scale-105 transition-transform duration-[20s] hover:scale-100"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/70"></div>
+        
+        <div class="relative z-10 h-full flex flex-col items-center justify-center text-center text-white px-4">
+            <div class="animate-fade-up">
+                <p class="text-xs md:text-sm tracking-[0.4em] mb-8 uppercase text-gold font-bold opacity-90">Save the Date</p>
+                <h1 class="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-serif font-bold mb-6 leading-tight tracking-tight">
+                    Amen <span class="text-3xl sm:text-4xl md:text-6xl align-middle font-light italic text-gold">&</span> John
+                </h1>
+                <div class="w-24 sm:w-32 h-px bg-gold/50 mx-auto my-8 sm:my-12"></div>
+                <p class="text-lg sm:text-xl md:text-3xl font-light tracking-widest font-serif italic mb-4 text-white/90">March 20th and 21st, 2026</p>
+                <div class="flex flex-col gap-3 mb-8 sm:mb-12">
+                    <p class="text-xs tracking-[0.3em] uppercase opacity-80 text-gold">#BEST FOREVER 2026</p>
+                    <p class="text-xs tracking-[0.3em] uppercase opacity-80 text-gold">#DIVINE LOVE</p>
+                </div>
+
+                <!-- Countdown Timer -->
+                <div id="countdown" class="flex justify-center gap-4 sm:gap-6 md:gap-10 mb-12 sm:mb-16 text-center">
+                    <div class="flex flex-col items-center p-3 sm:p-4 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10">
+                        <span id="days" class="text-3xl sm:text-4xl md:text-6xl font-serif font-bold text-white">00</span>
+                        <span class="text-xs uppercase tracking-widest text-gold mt-1 sm:mt-2">Days</span>
+                    </div>
+                    <div class="text-2xl sm:text-3xl md:text-5xl font-serif text-gold/50 self-center">:</div>
+                    <div class="flex flex-col items-center p-3 sm:p-4 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10">
+                        <span id="hours" class="text-3xl sm:text-4xl md:text-6xl font-serif font-bold text-white">00</span>
+                        <span class="text-xs uppercase tracking-widest text-gold mt-1 sm:mt-2">Hours</span>
+                    </div>
+                    <div class="text-2xl sm:text-3xl md:text-5xl font-serif text-gold/50 self-center">:</div>
+                    <div class="flex flex-col items-center p-3 sm:p-4 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10">
+                        <span id="minutes" class="text-3xl sm:text-4xl md:text-6xl font-serif font-bold text-white">00</span>
+                        <span class="text-xs uppercase tracking-widest text-gold mt-1 sm:mt-2">Minutes</span>
+                    </div>
+                    <div class="text-2xl sm:text-3xl md:text-5xl font-serif text-gold/50 self-center">:</div>
+                    <div class="flex flex-col items-center p-3 sm:p-4 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10">
+                        <span id="seconds" class="text-3xl sm:text-4xl md:text-6xl font-serif font-bold text-white">00</span>
+                        <span class="text-xs uppercase tracking-widest text-gold mt-1 sm:mt-2">Seconds</span>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row gap-6 sm:gap-8 justify-center">
+                    <a href="#rsvp" class="btn-primary bg-white text-wine border-white hover:bg-gold hover:text-white hover:border-gold px-8 sm:px-12 py-3 sm:py-4 rounded-full text-sm font-bold tracking-[0.2em] uppercase transition-all duration-300 shadow-lg hover:shadow-gold/20 transform hover:-translate-y-1">
+                        RSVP Now
+                    </a>
+                    <a href="#invitation" class="btn-outline border-2 border-white text-white hover:bg-white hover:text-wine px-8 sm:px-12 py-3 sm:py-4 rounded-full text-sm font-bold tracking-[0.2em] uppercase transition-all duration-300 transform hover:-translate-y-1">
+                        Invitation
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-white/70">
+            <span class="text-[10px] uppercase tracking-widest mb-2 block text-center">Scroll</span>
+            <i data-lucide="chevron-down" class="w-6 h-6 mx-auto"></i>
+        </div>
+    </header>
+
+    <!-- Intro / Welcome Section (Minimalist) -->
+    <section id="welcome" class="py-24 md:py-32 bg-cream text-center relative overflow-hidden">
+        <!-- Decor element -->
+        <div class="absolute top-0 left-0 w-64 h-64 bg-soft-pink/20 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+        
+        <div class="container mx-auto px-6 max-w-4xl fade-in-section">
+            <span class="section-subtitle">Welcome</span>
+            <h2 class="section-title">A Union of Grace</h2>
+            
+            <div class="mt-12 space-y-6 text-lg md:text-xl leading-relaxed text-gray-600 font-serif italic relative">
+                <div class="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-gold/30 to-transparent"></div>
+                
+                <p class="bg-cream inline-block px-4 relative z-10">Before time spoke our names,<br>God wrote our meeting in His book.</p>
+                <p class="bg-cream inline-block px-4 relative z-10">Two paths aligned by grace,<br>Two hearts drawn by divine design.</p>
+                <p class="bg-cream inline-block px-4 relative z-10">As Adam knew his Eve, so we were known—<br>Chosen, covered, and called as one.</p>
+                <p class="bg-cream inline-block px-4 relative z-10">A covenant sealed not by words alone,<br>But by heaven’s breath and promise sure.</p>
+                <p class="bg-cream inline-block px-4 relative z-10">Love stands here—patient and kind,<br>Rooted in faith, refined by fire.</p>
+                <p class="bg-cream inline-block px-4 relative z-10">What God has joined, no storm can sever,<br>No season weaken, no night undo.</p>
+                <p class="bg-cream inline-block px-4 relative z-10">From altar to lifetime, we walk in truth,<br>Clothed in mercy, crowned with purpose.</p>
+                <p class="bg-cream inline-block px-4 relative z-10">Hand in hand, heart to heart,<br>Built on Christ, our firm foundation.</p>
+                <p class="bg-cream inline-block px-4 relative z-10">This union is holy ground,<br>A garden where grace will grow.</p>
+                <p class="bg-cream inline-block px-4 relative z-10 font-bold text-wine">Forever written, divinely kept—<br>I am yours, and you are mine.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story Section (Asymmetric Layout) -->
+    <section id="story" class="py-32 bg-white relative">
+        <div class="container mx-auto px-6 fade-in-section">
+            <div class="flex flex-col md:flex-row items-center gap-20 md:gap-32">
+                <!-- Image Grid -->
+                <div class="w-full md:w-1/2 relative h-[650px]">
+                    <div class="absolute top-0 left-0 w-4/5 h-4/5 overflow-hidden shadow-2xl z-10 rounded-2xl group">
+                        <img src="public/images/amen-wonder.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Amen Wonder">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+                    <div class="absolute bottom-0 right-0 w-2/3 h-2/3 overflow-hidden shadow-2xl z-20 border-8 border-white rounded-2xl group">
+                        <img src="public/images/john.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="John">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+                    <!-- Decorative Circle -->
+                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] border border-gold/40 rounded-full z-0"></div>
+                </div>
+
+                <!-- Text Content -->
+                <div class="w-full md:w-1/2 space-y-10">
+                    <div>
+                        <span class="section-subtitle text-left mb-4 text-gold/80">How it began</span>
+                        <h2 class="text-5xl md:text-7xl font-serif text-wine mb-10">Our Story</h2>
+                    </div>
+                    
+                    <div class="space-y-8 text-gray-600 leading-relaxed font-light text-justify text-lg">
+                        <p>
+                            <span class="text-6xl float-left mr-6 font-serif text-gold">O</span>ur journey began in Zamfara during our National Youth Service, where God quietly laid the foundation of our story. John served as the Music Director, while Amen Wonder was the Assistant Music Director. Though we worked side by side in ministry, love waited patiently.
+                        </p>
+                        <p>
+                            Our friendship was nurtured in the NCCF Family House, rooted in faith, service, and shared purpose. When our service year ended and we parted ways, God was not finished with us.
+                        </p>
+                        <p>
+                            In His perfect timing, He called us both, rekindled our connection, and breathed divine love into what once was friendship. What began as service became covenant, and what started in obedience blossomed into love.
+                        </p>
+                        <p>
+                            Today, we stand here—grateful, chosen, and united—stepping into forever with God at the center.
+                        </p>
+                    </div>
+                    
+                    <div class="pt-12 border-t border-gray-100">
+                        <p class="font-serif italic text-2xl text-wine">"Rooted in faith, refined by fire."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wedding Events (Glassmorphism Cards) -->
+    <section id="events" class="py-24 bg-cover bg-fixed relative" style="background-image: url('public/images/events-bg.jpg');">
+        <div class="absolute inset-0 bg-wine/90 backdrop-blur-sm"></div>
+        
+        <div class="container mx-auto px-6 relative z-10 fade-in-section">
+            <div class="text-center text-white mb-16">
+                <span class="tracking-widest uppercase text-sm mb-4 block text-gold">Celebrate With Us</span>
+                <h2 class="text-4xl md:text-5xl font-serif">Wedding Events</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <!-- Traditional -->
+                <div class="glass-card p-10 md:p-12 text-center group hover:bg-white transition-colors duration-500">
+                    <div class="inline-block p-4 border border-wine/20 rounded-full mb-6 group-hover:border-wine/50 transition-colors">
+                        <i data-lucide="users" class="w-6 h-6 text-wine"></i>
+                    </div>
+                    <h3 class="text-2xl font-serif font-bold text-wine mb-2">Traditional Wedding</h3>
+                    <p class="text-xs uppercase tracking-widest text-gold mb-6">Friday, 20th March 2026</p>
+                    <p class="text-gray-600 mb-8 px-4">Maranatha Villa, Wonrere Street, Oke-Osun, Iresi, Boluwaduro LGA, Osun State</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Maranatha+Villa+Wonrere+Street+Oke-Osun+Iresi+Boluwaduro+LGA+Osun+State" target="_blank" class="text-xs font-bold uppercase tracking-widest text-wine border-b border-wine pb-1 hover:text-gold hover:border-gold transition-colors">
+                        View Map
+                    </a>
+                </div>
+
+                <!-- Church -->
+                <div class="glass-card p-12 md:p-16 text-center group hover:bg-white/10 transition-colors duration-500 backdrop-blur-md bg-white/5 border border-white/10 rounded-2xl shadow-2xl">
+                    <div class="inline-block p-4 border border-white/20 rounded-full mb-8 group-hover:border-gold/50 transition-colors">
+                        <i data-lucide="church" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="text-3xl font-serif font-bold text-white mb-4">Church Wedding</h3>
+                    <p class="text-sm uppercase tracking-widest text-gold mb-8">Saturday, 21st March 2026</p>
+                    <p class="text-gray-200 mb-10 px-4 text-lg">All Bible Ministries Int’l, Igbajo Road, Iresi, Boluwaduro LGA, Osun State</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=All+Bible+Ministries+Intl+Igbajo+Road+Iresi+Boluwaduro+LGA+Osun+State" target="_blank" class="text-sm font-bold uppercase tracking-widest text-white border-b border-white pb-2 hover:text-gold hover:border-gold transition-colors">
+                        View Map
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section 
+        id="gallery" 
+        class="py-20 sm:py-32 bg-white text-center" 
+        data-motion="gallery-section" 
+    >
+        <div class="container mx-auto px-6">
+            <span class="block text-gold text-xs font-bold uppercase tracking-widest mb-4">Memories</span>
+            <h2 
+                class="text-3xl sm:text-5xl font-serif text-wine mb-12" 
+                data-motion="gallery-title"
+            >
+                Gallery
+            </h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                 <div class="relative group gallery-item overflow-hidden aspect-square cursor-pointer" data-motion="gallery-image" data-index="0" onclick="openLightbox('public/images/gallery-14.jpeg')">
+                    <img src="public/images/gallery-14.jpeg" alt="Amen & John" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+                    <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                 <div class="relative group gallery-item overflow-hidden aspect-square cursor-pointer" data-motion="gallery-image" data-index="0" onclick="openLightbox('public/images/gallery-15.jpeg')">
+                    <img src="public/images/gallery-15.jpeg" alt="Amen & John" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+                    <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                 <div class="relative group gallery-item overflow-hidden aspect-square cursor-pointer" data-motion="gallery-image" data-index="0" onclick="openLightbox('public/images/gallery-16.jpeg')">
+                    <img src="public/images/gallery-16.jpeg" alt="Amen & John" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+                    <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div class="relative group gallery-item overflow-hidden aspect-square cursor-pointer" data-motion="gallery-image" data-index="0" onclick="openLightbox('public/images/gallery-1.jpg')">
+                    <img src="public/images/gallery-1.jpg" alt="Amen & John" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+                    <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div class="relative group gallery-item overflow-hidden aspect-square cursor-pointer" data-motion="gallery-image" data-index="1" onclick="openLightbox('public/images/gallery-2.jpg')">
+                    <img src="public/images/gallery-2.jpg" alt="Amen & John" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+                    <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div class="relative group gallery-item overflow-hidden aspect-square cursor-pointer" data-motion="gallery-image" data-index="2" onclick="openLightbox('public/images/gallery-3.jpg')">
+                    <img src="public/images/gallery-3.jpg" alt="Amen & John" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+                    <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div class="relative group gallery-item overflow-hidden aspect-square cursor-pointer" data-motion="gallery-image" data-index="3" onclick="openLightbox('public/images/gallery-4.jpg')">
+                    <img src="public/images/gallery-4.jpg" alt="Amen & John" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+                    <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div class="relative group gallery-item overflow-hidden aspect-square cursor-pointer" data-motion="gallery-image" data-index="4" onclick="openLightbox('public/images/gallery-5.jpg')">
+                    <img src="public/images/gallery-5.jpg" alt="Amen & John" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+                    <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div class="relative group gallery-item overflow-hidden aspect-square cursor-pointer" data-motion="gallery-image" data-index="5" onclick="openLightbox('public/images/gallery-6.jpg')">
+                    <img src="public/images/gallery-6.jpg" alt="Amen & John" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+                    <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div class="relative group gallery-item overflow-hidden aspect-square cursor-pointer" data-motion="gallery-image" data-index="6" onclick="openLightbox('public/images/gallery-7.jpg')">
+                    <img src="public/images/gallery-7.jpg" alt="Amen & John" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+                    <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div class="relative group gallery-item overflow-hidden aspect-square cursor-pointer" data-motion="gallery-image" data-index="7" onclick="openLightbox('public/images/gallery-8.jpg')">
+                    <img src="public/images/gallery-8.jpg" alt="Amen & John" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+                    <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div class="relative group gallery-item overflow-hidden aspect-square cursor-pointer" data-motion="gallery-image" data-index="8" onclick="openLightbox('public/images/gallery-9.jpg')">
+                    <img src="public/images/gallery-9.jpg" alt="Amen & John" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+                    <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div class="relative group gallery-item overflow-hidden aspect-square cursor-pointer" data-motion="gallery-image" data-index="9" onclick="openLightbox('public/images/gallery-10.jpg')">
+                    <img src="public/images/gallery-10.jpg" alt="Amen & John" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+                    <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div class="relative group gallery-item overflow-hidden aspect-square cursor-pointer" data-motion="gallery-image" data-index="10" onclick="openLightbox('public/images/gallery-11.jpg')">
+                    <img src="public/images/gallery-11.jpg" alt="Amen & John" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+                    <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div class="relative group gallery-item overflow-hidden aspect-square cursor-pointer" data-motion="gallery-image" data-index="11" onclick="openLightbox('public/images/gallery-12.jpg')">
+                    <img src="public/images/gallery-12.jpg" alt="Amen & John" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+                    <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div class="relative group gallery-item overflow-hidden aspect-square cursor-pointer" data-motion="gallery-image" data-index="12" onclick="openLightbox('public/images/gallery-13.jpg')">
+                    <img src="public/images/gallery-13.jpg" alt="Amen & John" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
+                    <div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+            </div>
+
+            <!-- Invitation Card Button -->
+            <div class="text-center mt-20 pt-12 border-t border-gray-200">
+                <button onclick="openLightbox('public/images/invitation-card.jpeg')" class="inline-flex items-center gap-3 px-8 py-4 bg-wine text-white rounded-full hover:bg-gold transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-xl">
+                    <i data-lucide="mail" class="w-5 h-5"></i>
+                    View Invitation Card
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Palette -->
+    <section class="py-16 bg-white border-t border-gray-100">
+        <div class="container mx-auto px-6 text-center fade-in-section">
+            <h3 class="font-serif text-2xl text-wine mb-8">Colour Palette</h3>
+            <div class="flex flex-wrap justify-center gap-6">
+                <div class="group flex flex-col items-center gap-2">
+                    <div class="w-12 h-12 rounded-full bg-surface border shadow-sm group-hover:scale-110 transition-transform"></div>
+                    <span class="text-[10px] uppercase tracking-widest text-gray-400">White</span>
+                </div>
+                <div class="group flex flex-col items-center gap-2">
+                    <div class="w-12 h-12 rounded-full bg-soft-pink shadow-sm group-hover:scale-110 transition-transform"></div>
+                    <span class="text-[10px] uppercase tracking-widest text-gray-400">Pink</span>
+                </div>
+                <div class="group flex flex-col items-center gap-2">
+                    <div class="w-12 h-12 rounded-full bg-[#D2B48C] shadow-sm group-hover:scale-110 transition-transform"></div>
+                    <span class="text-[10px] uppercase tracking-widest text-gray-400">Tan</span>
+                </div>
+                <div class="group flex flex-col items-center gap-2">
+                    <div class="w-12 h-12 rounded-full bg-[#7B3F00] shadow-sm group-hover:scale-110 transition-transform"></div>
+                    <span class="text-[10px] uppercase tracking-widest text-gray-400">Choco</span>
+                </div>
+                <div class="group flex flex-col items-center gap-2">
+                    <div class="w-12 h-12 rounded-full bg-wine shadow-sm group-hover:scale-110 transition-transform"></div>
+                    <span class="text-[10px] uppercase tracking-widest text-gray-400">Wine</span>
+                </div>
+                <div class="group flex flex-col items-center gap-2">
+                    <div class="w-12 h-12 rounded-full bg-silver shadow-sm group-hover:scale-110 transition-transform"></div>
+                    <span class="text-[10px] uppercase tracking-widest text-gray-400">Silver</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSVP Section (Modern Split Card Design) -->
+    <section id="rsvp" class="py-32 bg-wine text-white relative overflow-hidden">
+        <!-- Background Elements -->
+        <div class="absolute top-0 right-0 w-[800px] h-[800px] bg-white/5 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2"></div>
+        <div class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gold/10 rounded-full blur-3xl -translate-x-1/2 translate-y-1/2"></div>
+        
+        <div class="container mx-auto px-6 max-w-6xl relative z-10 fade-in-section">
+            <div class="flex flex-col lg:flex-row bg-white/5 backdrop-blur-md rounded-[3rem] overflow-hidden border border-white/10 shadow-2xl">
+                
+                <!-- Left Column: Info & Context -->
+                <div class="lg:w-5/12 p-10 md:p-16 flex flex-col justify-between bg-gradient-to-br from-black/20 to-transparent relative overflow-hidden">
+                    <!-- Decorative Pattern -->
+                    <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+                    
+                    <div class="relative z-10">
+                        <span class="inline-block py-1 px-3 border border-gold/50 rounded-full text-[10px] tracking-[0.3em] uppercase text-gold mb-6">Join Us</span>
+                        <h2 class="text-5xl md:text-6xl font-serif mb-6 leading-tight">RSVP</h2>
+                        <p class="text-white/80 font-light text-lg leading-relaxed">
+                            Please confirm your attendance by March 1st, 2026.
+                        </p>
+                    </div>
+
+                    <div class="relative z-10 mt-12 space-y-8">
+                        <div>
+                            <p class="text-xs uppercase tracking-widest text-gold mb-3">RSVP Contacts</p>
+                            <div class="flex flex-col gap-2 text-sm text-white/70">
+                                <a href="tel:09060648837" class="hover:text-gold transition-colors flex items-center gap-2">
+                                    <i data-lucide="phone" class="w-4 h-4"></i> 0906 064 8837
+                                </a>
+                                <a href="tel:08163404577" class="hover:text-gold transition-colors flex items-center gap-2">
+                                    <i data-lucide="phone" class="w-4 h-4"></i> 0816 340 4577
+                                </a>
+                                <a href="tel:07083618622" class="hover:text-gold transition-colors flex items-center gap-2">
+                                    <i data-lucide="phone" class="w-4 h-4"></i> 0708 361 8622
+                                </a>
+                                <a href="tel:07088708841" class="hover:text-gold transition-colors flex items-center gap-2">
+                                    <i data-lucide="phone" class="w-4 h-4"></i> 0708 870 8841
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Form -->
+                <div class="lg:w-7/12 bg-white p-10 md:p-16">
+                    <h3 class="text-3xl font-serif text-wine mb-8">Confirm Attendance</h3>
+                    
+                    <form onsubmit="handleRSVP(event)" class="space-y-6">
+                        <div class="space-y-6">
+                            <!-- Name Input -->
+                            <div class="relative group">
+                                <input type="text" id="name" required 
+                                    class="peer w-full bg-gray-50 border border-gray-200 rounded-xl px-5 py-4 text-gray-800 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-all placeholder-transparent"
+                                    placeholder="Full Name">
+                                <label for="name" 
+                                    class="absolute left-5 -top-2.5 bg-white px-2 text-xs font-bold text-gray-400 transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-placeholder-shown:font-normal peer-focus:-top-2.5 peer-focus:text-xs peer-focus:font-bold peer-focus:text-gold">
+                                    Full Name
+                                </label>
+                            </div>
+
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <!-- Phone Input -->
+                                <div class="relative group">
+                                    <input type="tel" id="phone" required 
+                                        class="peer w-full bg-gray-50 border border-gray-200 rounded-xl px-5 py-4 text-gray-800 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-all placeholder-transparent"
+                                        placeholder="Phone Number">
+                                    <label for="phone" 
+                                        class="absolute left-5 -top-2.5 bg-white px-2 text-xs font-bold text-gray-400 transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-placeholder-shown:font-normal peer-focus:-top-2.5 peer-focus:text-xs peer-focus:font-bold peer-focus:text-gold">
+                                        Phone Number
+                                    </label>
+                                </div>
+
+                                <!-- Guests Select -->
+                                <div class="relative group">
+                                    <select id="guests" 
+                                        class="w-full bg-gray-50 border border-gray-200 rounded-xl px-5 py-4 text-gray-800 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-all appearance-none cursor-pointer">
+                                        <option value="1">1 Guest</option>
+                                        <option value="2">2 Guests</option>
+                                        <option value="3">3 Guests</option>
+                                        <option value="Family">Family</option>
+                                    </select>
+                                    <div class="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">
+                                        <i data-lucide="chevron-down" class="w-5 h-5"></i>
+                                    </div>
+                                    <label class="absolute left-5 -top-2.5 bg-white px-2 text-xs font-bold text-gold">
+                                        Number of Guests
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Message Input -->
+                            <div class="relative group">
+                                <textarea id="message" rows="3" 
+                                    class="peer w-full bg-gray-50 border border-gray-200 rounded-xl px-5 py-4 text-gray-800 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-all placeholder-transparent resize-none"
+                                    placeholder="Message"></textarea>
+                                <label for="message" 
+                                    class="absolute left-5 -top-2.5 bg-white px-2 text-xs font-bold text-gray-400 transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-placeholder-shown:font-normal peer-focus:-top-2.5 peer-focus:text-xs peer-focus:font-bold peer-focus:text-gold">
+                                    Well Wishes (Optional)
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="pt-4">
+                            <button type="submit" class="w-full bg-wine text-white py-4 rounded-xl font-bold tracking-[0.2em] uppercase hover:bg-gold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex justify-center items-center gap-3">
+                                <span>Confirm Attendance</span>
+                                <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (Clean & Compact) -->
+    <footer class="bg-black text-white py-24 border-t border-white/5 relative overflow-hidden">
+        <!-- Subtle Background Glow -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[100px] bg-gold/5 blur-[100px] rounded-full pointer-events-none"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+                <!-- Left: Brand & Hashtag -->
+                <div class="text-center md:text-left">
+                    <h2 class="text-2xl font-serif text-white mb-1">A & J</h2>
+                    <p class="text-[10px] tracking-[0.3em] uppercase text-white/40">#BESTFOREVER2026</p>
+                </div>
+
+                <!-- Center: The Quote -->
+                <div class="text-center max-w-lg">
+                    <p class="font-serif italic text-lg text-gold/90 mb-2">
+                        "What God has joined together, let no one separate."
+                    </p>
+                    <div class="flex items-center justify-center gap-2 opacity-30">
+                        <span class="h-px w-8 bg-white"></span>
+                        <p class="text-[10px] uppercase tracking-widest text-white">Matthew 19:6</p>
+                        <span class="h-px w-8 bg-white"></span>
+                    </div>
+                </div>
+
+                <!-- Right: Socials -->
+                <div class="flex gap-6">
+                    <a href="#" class="text-white/40 hover:text-gold transition-colors hover:scale-110 transform duration-300"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                    <a href="#" class="text-white/40 hover:text-gold transition-colors hover:scale-110 transform duration-300"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+                    <a href="#" class="text-white/40 hover:text-gold transition-colors hover:scale-110 transform duration-300"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+                </div>
+            </div>
+
+            <!-- Bottom: Credits (Very Minimal) -->
+            <div class="mt-8 pt-6 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] uppercase tracking-widest text-white/20">
+                <p>&copy; 2026 Amen & John</p>
+                <div class="flex items-center gap-1">
+                    <span>Design by</span>
+                    <a href="https://pinnacletechhub.com.ng" target="_blank" class="text-white/40 hover:text-gold transition-colors">Pinnacle Tech Hub</a>
+                    <span class="mx-1">|</span>
+                    <a href="https://wa.me/2348150829549" target="_blank" class="hover:text-gold transition-colors flex items-center gap-1">
+                        <i data-lucide="phone" class="w-3 h-3"></i> WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox -->
+    <div id="lightbox">
+        <button class="absolute top-8 right-8 text-white hover:text-gold transition-colors" onclick="closeLightbox()">
+            <i data-lucide="x" class="w-10 h-10"></i>
+        </button>
+        <img id="lightbox-img" src="" alt="Full view">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
